@@ -42,7 +42,7 @@ class MazeMDP:
             if self.maze[(x,y)]['W'] == 1:
                 next_state = (x - 1, y)
         else:
-            next_state = None
+            next_state = self.move(state)
         return next_state if next_state in self.states else None
     
     def value_iteration(self):
@@ -80,6 +80,18 @@ class MazeMDP:
             return 'S'
         elif self.maze[(x,y)]['E'] == 1:
             return 'E'
+        
+    def move (self, state):
+        x, y = state
+        if self.maze[(x,y)]['W'] == 1:
+            next_state = (x - 1, y)
+        elif self.maze[(x,y)]['N'] == 1:
+            next_state = (x , y-1)
+        elif self.maze[(x,y)]['S'] == 1:
+            next_state = (x , y + 1)
+        elif self.maze[(x,y)]['E'] == 1:
+            next_state = (x +1, y)
+        return next_state
 
     def value_iteration2(self):
             path = {}
@@ -136,7 +148,7 @@ class MazeMDP:
 
 def main():
     m = maze(5,5)
-    m.CreateMaze(loopPercent=100)
+    m.CreateMaze(loopPercent=50)
     a = agent(m, footprints=True, shape='arrow')
     goal_state = (1, 1)
 
