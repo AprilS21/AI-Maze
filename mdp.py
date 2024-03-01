@@ -51,7 +51,8 @@ def value_iteration(maze, agent):
                         max_value = value
                         best_action = action
             optimal_policy[state] = best_action
-   print(optimal_policy)
+   #print(optimal_policy)
+   return optimal_policy
            
 
 def get_reward(state, next_state, goal):
@@ -155,20 +156,48 @@ def policy_iteration(maze):
             policy = new_policy
             iterations+= 1
         #print(values)
-        print(policy)
+        #print(policy)
         print("iteration ", iterations)
+        return policy
         
-
+def convert_policy_to_path(policy, start_state):
+     path = {}
+     goal = (1,1)
+     state = start_state
+     while True:
+          if state == goal:
+               break
+          action = policy[state]
+          x,y = state
+          if action == 'N':
+               path[state] = (x-1, y)
+               state = (x-1, y)
+          if action == 'S':
+               path[state] = (x+1, y)
+               state = (x+1, y)
+          if action == 'W':
+               path[state] = (x, y-1)
+               state = (x, y-1)
+          if action == 'E':
+               path[state] = (x, y+1)
+               state = (x, y+1)
+     return path
+               
 
 def main():
-    m = maze(10,10)
-    m.CreateMaze(loopPercent=50)
+    m = maze(40,40)
+    m.CreateMaze(loopPercent=100)
     a = agent(m, footprints=True, shape='arrow')
+    b = agent(m, footprints=True, shape='arrow', color='red')
     goal_state = (1, 1)
     #print(m.maze_map)
     #print(list(m.maze_map.keys()))
-    value_iteration(m, a)
-    policy_iteration(m)
+    policy1 = value_iteration(m, a)
+    policy1path = convert_policy_to_path(policy1, (m.rows, m.cols))
+    policy2 = policy_iteration(m)
+    policy2path = convert_policy_to_path(policy2, (m.rows, m.cols))
+    m.tracePath({a:policy1path})
+    m.tracePath({b:policy2path})
     m.run()
 
-main()
+#main()
