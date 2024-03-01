@@ -9,10 +9,12 @@ def DFS(maze):
     goal = (1,1)
     mapMaze = maze.maze_map
     path = {}
+    cells_visited =0
 
     
     while len(frontier) >0: #while frontier is not empty
         currentCell = frontier.pop()
+        cells_visited +=1 
         if currentCell == goal:
             break
         for direction in 'ESNW':
@@ -35,6 +37,7 @@ def DFS(maze):
         finalPath[path[cell]] = cell
         cell = path[cell]
 
+    print("DFS Cells visited: ", cells_visited)
     return finalPath
 # dfs does not necessarily give the shortest path
 def main():

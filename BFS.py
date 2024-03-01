@@ -9,9 +9,11 @@ def BFS(maze):
     goal = (1,1)
     mapMaze = maze.maze_map
     path = {}
+    cells_visited  =0
 
     while len(frontier) >0: #while frontier is not empty
         currentCell = frontier.pop(0)
+        cells_visited +=1
         if currentCell == goal:
             break
         for direction in 'ESNW':
@@ -34,6 +36,7 @@ def BFS(maze):
         finalPath[path[cell]] = cell
         cell = path[cell]
 
+    print("BFS Cells visited: ", cells_visited)
     return finalPath
 
     

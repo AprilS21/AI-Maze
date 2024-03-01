@@ -7,7 +7,7 @@ def value_iteration(maze, agent):
    states.reverse()
    actions = ['N', 'S', 'E', 'W']
    gamma = 0.9  # Discount 
-   epsilon = 0.00001  # Convergence criterion
+   epsilon = 0.01  # Convergence criterion
    values = {state: 0 for state in states}
 
    iterations =0
@@ -31,7 +31,7 @@ def value_iteration(maze, agent):
            delta = max(delta, abs(v - values[state]))
        if delta < epsilon:
             break
-   iterations = iterations + 1
+       iterations = iterations + 1
 
    #print(values)
    print("iterations ", iterations)
@@ -96,7 +96,7 @@ def get_next_state(maze, state, action):
 def policy_evaluation(policy, vals, states, maze):
         goal = (1,1)
         gamma = 0.9  # Discount 
-        epsilon = 0.00001  # Convergence criterion
+        epsilon = 0.01  # Convergence criterion
         values = {state: 0 for state in states}
         while True:
             delta = 0
@@ -118,7 +118,7 @@ def get_best_policy_policy(values, states, actions, maze):
         policy = {}
         goal =(1,1)
         gamma = 0.9  # Discount 
-        epsilon = 0.00001  # Convergence criterion
+        epsilon = 0.01  # Convergence criterion
         for state in states:
             if state not in values:
                 continue
@@ -143,7 +143,7 @@ def policy_iteration(maze):
         states.reverse()
         actions = ['N', 'S', 'E', 'W']
         gamma = 0.9  # Discount 
-        epsilon = 0.00001  # Convergence criterion
+        epsilon = 0.01  # Convergence criterion
         values = {state: 0 for state in states}
 
         iterations =0

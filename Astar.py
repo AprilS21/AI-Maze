@@ -24,9 +24,11 @@ def Astar(maze):
     queue = PriorityQueue()
     queue.put((f_score[startCell], heuristic(startCell, goal), startCell))
     path = {}
+    cells_visited =0
 
     while not queue.empty():
         currentCell = queue.get()[2]
+        cells_visited +=1
         if currentCell == goal:
             break
         for direction in 'ESNW':
@@ -52,6 +54,8 @@ def Astar(maze):
     while cell != startCell:
         finalPath[path[cell]] = cell
         cell = path[cell]
+    
+    print("Astar Cells visited: ", cells_visited)
     return finalPath
 
 # Astar does give the shortest path
