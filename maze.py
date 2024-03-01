@@ -3,7 +3,7 @@ from DFS import DFS
 from BFS import BFS
 from Astar import Astar
 def main():
-    m=maze(10,10)
+    m=maze(40,40)
     m.CreateMaze(loopPercent=50)
     a=agent(m,shape='arrow',filled=True,footprints=True)
     path = DFS(m)
