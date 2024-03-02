@@ -38,7 +38,7 @@ def DFS(maze):
         cell = path[cell]
 
     print("DFS Cells visited: ", cells_visited)
-    return finalPath
+    return finalPath, cells_visited
 # dfs does not necessarily give the shortest path
 def main():
     m = maze(10,10)

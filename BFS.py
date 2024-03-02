@@ -37,7 +37,7 @@ def BFS(maze):
         cell = path[cell]
 
     print("BFS Cells visited: ", cells_visited)
-    return finalPath
+    return finalPath, cells_visited
 
     
 # bfs does give the shortest path

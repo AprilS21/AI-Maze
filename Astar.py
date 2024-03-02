@@ -56,7 +56,7 @@ def Astar(maze):
         cell = path[cell]
     
     print("Astar Cells visited: ", cells_visited)
-    return finalPath
+    return finalPath, cells_visited
 
 # Astar does give the shortest path
 def main():
