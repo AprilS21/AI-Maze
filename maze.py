@@ -1,3 +1,4 @@
+#Uses pyamaze library https://github.com/MAN1986/pyamaze 
 from pyamaze import maze,agent
 from DFS import DFS
 from BFS import BFS
